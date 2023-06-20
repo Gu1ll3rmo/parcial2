@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica DOM</title>
+</head>
+
+
+<style>
+    .azul{
+        color:  blue;
+    }
+    .fondorojo{
+        background-color: red;
+        color: white;
+    }
+    .list{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+    #testtext,#testtext2{
+        width: 15%;
+    }
+    #imgcontainer{
+        height: 20vh;
+        width: 20vw;
+    }
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+    .textoArcoiris{
+        .rainbow-text {
+        background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        }
+    }
+</style>
+
+
+
+
+<body>
+    <p id="demo">¡Hola Mundo!</p>
+    <h1 id="titulo">Viejo Encabezado</h1>
+    <main>
+        <h1 class="azul">CLASE AZUL</h1>
+        <p> Etiqueta P</p>
+    </main>
+    <p class="fondorojo">FONDOROJO 1</p>
+    <p class="fondorojo">FONDOROJO 2</p>
+    <ul class="list">
+        <li>Lista #1</li>
+        <li>Lista #2</li>
+        <li>Lista #3</li>
+        <li>Lista #4</li>
+        <li>Lista #5</li>
+    </ul>
+    <form action="#" method="get" id="form1">
+        <label for="testtext">Test Alerta si el input está vacio</label><br>
+        <input type="text" name="testtext" id="testtext" placeholder="Deja vacio para activar la Alerta">
+        <input type="submit" value="ENVIAR" id="btnSubmit">
+    </form> 
+    <form action="#" method="get" id="form2">
+        <label for="testtext2">Test X &gt; 0 && x &lt; 10]</label> <br>
+        <input type="text" name="testtext2" id="testtext2" placeholder="Inserta un numero del 1 al 10">
+        <input type="submit" value="Comprobar" id="btnSubmit2">
+    </form>
+    
+    <p class="textoArcoiris">cliquear la imagen para cambiar</p>
+    <div id="imgcontainer" onclick="ChangePicture()">
+        <img id="misimagenes" src="https://i.pinimg.com/564x/33/c6/9a/33c69ae40dd2819f901bc79cfc365408.jpg" alt="">
+    </div>
+
+    <h2 id="timelabel">HORA ACTUAL:</h2>
+</body>
+
+
+
+
+<script>
+    document.getElementById("demo").innerHTML="¡Nuevo Texto!";
+    document.getElementById("titulo").innerHTML="¡Nuevo Encabezado!";
+    
+
+    const x = document.getElementsByTagName("main");
+    console.log(x);
+    const y = document.getElementsByTagName("p");
+    console.log(y);
+   
+
+    const X = document.getElementsByClassName("intro");
+    console.log(x);
+
+    
+    const a = document.querySelectorAll("p.fondorojo");
+
+
+    const b = document.querySelectorAll("ul > li");
+    console.log(b);
+
+
+    const c = document.querySelector("h1");
+    console.log(c);
+   
+
+    const d = document.querySelector(".list");
+    console.log(d);
+
+  
+
+        console.log("INICIO FOREACH");
+    const listaDeElementos = document.querySelectorAll("ul > li");
+        listaDeElementos.forEach((item) => {
+            console.log(item);
+            
+        });
+        console.log("FINAL FOREACH");
+
+
+        //Agregar nuevos elementos HTML.
+        let lista = document.createElement("ul");
+        document.body.appendChild(lista);
+
+        let elemento1 = document.createElement("li");
+        elemento1.textContent="planta";
+        lista.appendChild(elemento1);
+        
+        let elemento2 = document.createElement("li");
+        elemento2.textContent="animal";
+        lista.appendChild(elemento2);
+
+
+    
+
+
+        let botonSubmit = document.getElementById('btnSubmit');
+        botonSubmit.addEventListener("click", () =>{
+            let x = document.forms["form1"]["testtext"].value;
+            if(x === ""){
+                alert("Se debe completar el nombre");
+                return false;
+            }
+        });
+
+      
+        
+        let botonSubmit2 = document.getElementById('btnSubmit2');
+        botonSubmit2.addEventListener("click", () =>{
+            let x = document.forms["form2"]["testtext2"].value
+            if (isNaN(x) || x < 1 || x > 10){
+                alert("Entrada no valida");
+                return false;
+            }else{
+                alert("Correcto");
+                return false
+            }
+            return false;
+        })
+        
+        function ChangePicture(x){
+            document.getElementById('misimagenes').src = linksfotos[Math.floor(Math.random()*linksfotos.length)];
+            console.log(document.getElementById('misimagenes').src);
+        }
+       
+        document.getElementById("timelabel").innerHTML = "Hora actual: " + Date();
+
+        const linksfotos = [
+            "https://i.pinimg.com/564x/0b/a7/ee/0ba7eeebcef8474ac8dbc08c6b8f8826.jpg",
+            "https://i.pinimg.com/564x/b6/6e/cf/b66ecf60caad49b347f17aa195dd56a4.jpg",
+            "https://i.pinimg.com/564x/40/97/51/40975117349aef16c5d062c05714a4f1.jpg"
+
+
+
+
+
+        ]
+
+</script>
+</html>
